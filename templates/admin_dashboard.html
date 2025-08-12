@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head><title>Admin Dashboard - Moh-Reels</title></head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <a href="{{ url_for('admin_logout') }}">Logout</a>
+  <h2>Visits: {{ visits }}</h2>
+  <h2>Disk Usage</h2>
+  <p>Total: {{ (total / (1024**3))|round(2) }} GB</p>
+  <p>Used: {{ (used / (1024**3))|round(2) }} GB</p>
+  <p>Free: {{ (free / (1024**3))|round(2) }} GB</p>
+
+  <h2>Uploaded Videos</h2>
+  <table border="1" cellpadding="8">
+    <thead>
+      <tr><th>Filename</th><th>Size (MB)</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      {% for video in videos %}
+      <tr>
+        <td>{{ video.name }}</td>
+        <td>{{ (video.size / (1024*1024))|round(2) }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('delete_video', filename=video.name) }}" onsubmit="return confirm('Delete this video?');">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
