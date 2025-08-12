@@ -1,0 +1,50 @@
+:root {
+  --bg: #0f0f10;
+  --card: #111214;
+  --txt: #fff;
+  --muted: #aaa;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body,#app { height: 100%; background: var(--bg); color: var(--txt); font-family: Inter, Arial, sans-serif; }
+
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 56px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 0 12px; background: rgba(0,0,0,0.4); z-index: 10;
+}
+
+.topbar h1 { font-size: 18px; letter-spacing: 0.6px; }
+
+.upload-btn {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  padding:8px 12px; border-radius: 8px; cursor: pointer;
+}
+.upload-btn input { display: none; color: white; }
+
+.reels-container {
+  position: absolute; top:56px; bottom:0; left:0; right:0;
+  overflow-y: auto; scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.reel {
+  position: relative; height: calc(100vh - 56px); width:100%;
+  display:flex; align-items:center; justify-content:center;
+  scroll-snap-align: start;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+}
+.reel video {
+  max-height: 100%; max-width: 100%;
+  object-fit: contain; border-radius: 6px;
+}
+
+.overlay {
+  position: absolute; right: 12px; bottom: 40px; display:flex; flex-direction:column; gap:12px;
+}
+
+.icon { background: rgba(255,255,255,0.08); padding:8px 10px; border-radius: 10px; color: var(--txt); }
+.toast {
+  position: fixed; left:50%; transform: translateX(-50%); bottom: 20px;
+  background: rgba(0,0,0,0.8); color: #fff; padding:8px 12px; border-radius:8px;
+}
